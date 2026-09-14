@@ -1,0 +1,719 @@
+[
+    {
+        "id": "div-north",
+        "name": "Дивизион Север",
+        "parentId": "",
+        "headcount": 128,
+        "budget": 41200000,
+        "performance": 82,
+        "updatedAt": "2026-09-14T10:00:00.000Z",
+        "children": [
+            {
+                "id": "dep-sales-n",
+                "name": "Отдел продаж",
+                "parentId": "div-north",
+                "headcount": 36,
+                "budget": 9800000,
+                "performance": 74,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-sales-a",
+                        "name": "Команда A",
+                        "parentId": "dep-sales-n",
+                        "headcount": 12,
+                        "budget": 3100000,
+                        "performance": 81,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": [
+                            {
+                                "id": "squad-sales-a1",
+                                "name": "Сквад корпоративные",
+                                "parentId": "team-sales-a",
+                                "headcount": 7,
+                                "budget": 1900000,
+                                "performance": 86,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            },
+                            {
+                                "id": "squad-sales-a2",
+                                "name": "Сквад SMB",
+                                "parentId": "team-sales-a",
+                                "headcount": 5,
+                                "budget": 1200000,
+                                "performance": 73,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "team-sales-b",
+                        "name": "Команда B",
+                        "parentId": "dep-sales-n",
+                        "headcount": 10,
+                        "budget": 2400000,
+                        "performance": 71,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    },
+                    {
+                        "id": "team-sales-c",
+                        "name": "Команда C",
+                        "parentId": "dep-sales-n",
+                        "headcount": 8,
+                        "budget": 1800000,
+                        "performance": 68,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    },
+                    {
+                        "id": "team-sales-key",
+                        "name": "Ключевые клиенты",
+                        "parentId": "dep-sales-n",
+                        "headcount": 6,
+                        "budget": 2500000,
+                        "performance": 79,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "dep-dev-n",
+                "name": "Отдел разработки",
+                "parentId": "div-north",
+                "headcount": 58,
+                "budget": 21400000,
+                "performance": 88,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-platform",
+                        "name": "Платформа",
+                        "parentId": "dep-dev-n",
+                        "headcount": 18,
+                        "budget": 7200000,
+                        "performance": 91,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": [
+                            {
+                                "id": "squad-core",
+                                "name": "Сквад Core",
+                                "parentId": "team-platform",
+                                "headcount": 8,
+                                "budget": 3400000,
+                                "performance": 93,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": [
+                                    {
+                                        "id": "pod-core-day",
+                                        "name": "Под дневной",
+                                        "parentId": "squad-core",
+                                        "headcount": 4,
+                                        "budget": 1700000,
+                                        "performance": 95,
+                                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                                        "children": []
+                                    },
+                                    {
+                                        "id": "pod-core-night",
+                                        "name": "Под ночной",
+                                        "parentId": "squad-core",
+                                        "headcount": 4,
+                                        "budget": 1700000,
+                                        "performance": 90,
+                                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "squad-infra",
+                                "name": "Сквад Infra",
+                                "parentId": "team-platform",
+                                "headcount": 6,
+                                "budget": 2300000,
+                                "performance": 89,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            },
+                            {
+                                "id": "squad-dx",
+                                "name": "Сквад DX",
+                                "parentId": "team-platform",
+                                "headcount": 4,
+                                "budget": 1500000,
+                                "performance": 87,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "team-mobile",
+                        "name": "Мобильные приложения",
+                        "parentId": "dep-dev-n",
+                        "headcount": 14,
+                        "budget": 5100000,
+                        "performance": 84,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": [
+                            {
+                                "id": "squad-ios",
+                                "name": "Сквад iOS",
+                                "parentId": "team-mobile",
+                                "headcount": 7,
+                                "budget": 2600000,
+                                "performance": 86,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            },
+                            {
+                                "id": "squad-android",
+                                "name": "Сквад Android",
+                                "parentId": "team-mobile",
+                                "headcount": 7,
+                                "budget": 2500000,
+                                "performance": 82,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "team-web",
+                        "name": "Веб",
+                        "parentId": "dep-dev-n",
+                        "headcount": 16,
+                        "budget": 5600000,
+                        "performance": 85,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": [
+                            {
+                                "id": "squad-cabinet",
+                                "name": "Сквад кабинет",
+                                "parentId": "team-web",
+                                "headcount": 9,
+                                "budget": 3100000,
+                                "performance": 88,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            },
+                            {
+                                "id": "squad-landing",
+                                "name": "Сквад лендинги",
+                                "parentId": "team-web",
+                                "headcount": 7,
+                                "budget": 2500000,
+                                "performance": 80,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "team-qa",
+                        "name": "QA",
+                        "parentId": "dep-dev-n",
+                        "headcount": 10,
+                        "budget": 3500000,
+                        "performance": 90,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "dep-analytics-n",
+                "name": "Отдел аналитики",
+                "parentId": "div-north",
+                "headcount": 34,
+                "budget": 10000000,
+                "performance": 83,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-bi",
+                        "name": "BI",
+                        "parentId": "dep-analytics-n",
+                        "headcount": 12,
+                        "budget": 3600000,
+                        "performance": 85,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": [
+                            {
+                                "id": "squad-reports",
+                                "name": "Сквад отчёты",
+                                "parentId": "team-bi",
+                                "headcount": 6,
+                                "budget": 1800000,
+                                "performance": 84,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            },
+                            {
+                                "id": "squad-selfservice",
+                                "name": "Сквад self-service",
+                                "parentId": "team-bi",
+                                "headcount": 6,
+                                "budget": 1800000,
+                                "performance": 86,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "team-dwh",
+                        "name": "DWH",
+                        "parentId": "dep-analytics-n",
+                        "headcount": 14,
+                        "budget": 4200000,
+                        "performance": 81,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    },
+                    {
+                        "id": "team-ml",
+                        "name": "ML",
+                        "parentId": "dep-analytics-n",
+                        "headcount": 8,
+                        "budget": 2200000,
+                        "performance": 79,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "div-south",
+        "name": "Дивизион Юг",
+        "parentId": "",
+        "headcount": 64,
+        "budget": 18600000,
+        "performance": 71,
+        "updatedAt": "2026-09-14T10:00:00.000Z",
+        "children": [
+            {
+                "id": "dep-support-s",
+                "name": "Отдел поддержки",
+                "parentId": "div-south",
+                "headcount": 28,
+                "budget": 7200000,
+                "performance": 69,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-l1",
+                        "name": "L1",
+                        "parentId": "dep-support-s",
+                        "headcount": 12,
+                        "budget": 2400000,
+                        "performance": 64,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": [
+                            {
+                                "id": "squad-l1-chat",
+                                "name": "Сквад чат",
+                                "parentId": "team-l1",
+                                "headcount": 6,
+                                "budget": 1100000,
+                                "performance": 62,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            },
+                            {
+                                "id": "squad-l1-phone",
+                                "name": "Сквад телефон",
+                                "parentId": "team-l1",
+                                "headcount": 6,
+                                "budget": 1300000,
+                                "performance": 66,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "team-l2",
+                        "name": "L2",
+                        "parentId": "dep-support-s",
+                        "headcount": 10,
+                        "budget": 2800000,
+                        "performance": 77,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    },
+                    {
+                        "id": "team-l3",
+                        "name": "L3",
+                        "parentId": "dep-support-s",
+                        "headcount": 6,
+                        "budget": 2000000,
+                        "performance": 81,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "dep-ops-s",
+                "name": "Отдел операций",
+                "parentId": "div-south",
+                "headcount": 22,
+                "budget": 6100000,
+                "performance": 73,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-logistics",
+                        "name": "Логистика",
+                        "parentId": "dep-ops-s",
+                        "headcount": 12,
+                        "budget": 3300000,
+                        "performance": 75,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": [
+                            {
+                                "id": "squad-warehouse",
+                                "name": "Сквад склад",
+                                "parentId": "team-logistics",
+                                "headcount": 7,
+                                "budget": 1900000,
+                                "performance": 72,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            },
+                            {
+                                "id": "squad-delivery",
+                                "name": "Сквад доставка",
+                                "parentId": "team-logistics",
+                                "headcount": 5,
+                                "budget": 1400000,
+                                "performance": 78,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "team-procurement",
+                        "name": "Закупки",
+                        "parentId": "dep-ops-s",
+                        "headcount": 10,
+                        "budget": 2800000,
+                        "performance": 70,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "dep-hr-s",
+                "name": "HR",
+                "parentId": "div-south",
+                "headcount": 14,
+                "budget": 5300000,
+                "performance": 76,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-recruiting",
+                        "name": "Рекрутинг",
+                        "parentId": "dep-hr-s",
+                        "headcount": 8,
+                        "budget": 2900000,
+                        "performance": 74,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    },
+                    {
+                        "id": "team-people",
+                        "name": "People ops",
+                        "parentId": "dep-hr-s",
+                        "headcount": 6,
+                        "budget": 2400000,
+                        "performance": 80,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "div-west",
+        "name": "Дивизион Запад",
+        "parentId": "",
+        "headcount": 51,
+        "budget": 15300000,
+        "performance": 77,
+        "updatedAt": "2026-09-14T10:00:00.000Z",
+        "children": [
+            {
+                "id": "dep-marketing-w",
+                "name": "Маркетинг",
+                "parentId": "div-west",
+                "headcount": 21,
+                "budget": 6400000,
+                "performance": 72,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-performance",
+                        "name": "Performance",
+                        "parentId": "dep-marketing-w",
+                        "headcount": 9,
+                        "budget": 2800000,
+                        "performance": 70,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": [
+                            {
+                                "id": "squad-ads",
+                                "name": "Сквад реклама",
+                                "parentId": "team-performance",
+                                "headcount": 5,
+                                "budget": 1600000,
+                                "performance": 68,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            },
+                            {
+                                "id": "squad-seo",
+                                "name": "Сквад SEO",
+                                "parentId": "team-performance",
+                                "headcount": 4,
+                                "budget": 1200000,
+                                "performance": 73,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "team-brand",
+                        "name": "Бренд",
+                        "parentId": "dep-marketing-w",
+                        "headcount": 7,
+                        "budget": 2100000,
+                        "performance": 75,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    },
+                    {
+                        "id": "team-content",
+                        "name": "Контент",
+                        "parentId": "dep-marketing-w",
+                        "headcount": 5,
+                        "budget": 1500000,
+                        "performance": 71,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "dep-finance-w",
+                "name": "Финансы",
+                "parentId": "div-west",
+                "headcount": 18,
+                "budget": 5200000,
+                "performance": 84,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-accounting",
+                        "name": "Бухгалтерия",
+                        "parentId": "dep-finance-w",
+                        "headcount": 10,
+                        "budget": 2700000,
+                        "performance": 86,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    },
+                    {
+                        "id": "team-controlling",
+                        "name": "Контроллинг",
+                        "parentId": "dep-finance-w",
+                        "headcount": 8,
+                        "budget": 2500000,
+                        "performance": 82,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "dep-legal-w",
+                "name": "Юридический отдел",
+                "parentId": "div-west",
+                "headcount": 12,
+                "budget": 3700000,
+                "performance": 80,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-contracts",
+                        "name": "Договоры",
+                        "parentId": "dep-legal-w",
+                        "headcount": 7,
+                        "budget": 2100000,
+                        "performance": 79,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    },
+                    {
+                        "id": "team-compliance",
+                        "name": "Комплаенс",
+                        "parentId": "dep-legal-w",
+                        "headcount": 5,
+                        "budget": 1600000,
+                        "performance": 83,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "div-east",
+        "name": "Дивизион Восток",
+        "parentId": "",
+        "headcount": 47,
+        "budget": 14100000,
+        "performance": 68,
+        "updatedAt": "2026-09-14T10:00:00.000Z",
+        "children": [
+            {
+                "id": "dep-retail-e",
+                "name": "Розница",
+                "parentId": "div-east",
+                "headcount": 25,
+                "budget": 7400000,
+                "performance": 66,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-stores",
+                        "name": "Магазины",
+                        "parentId": "dep-retail-e",
+                        "headcount": 15,
+                        "budget": 4300000,
+                        "performance": 64,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": [
+                            {
+                                "id": "squad-store-1",
+                                "name": "Сквад магазин 1",
+                                "parentId": "team-stores",
+                                "headcount": 8,
+                                "budget": 2300000,
+                                "performance": 61,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": [
+                                    {
+                                        "id": "shift-morning",
+                                        "name": "Смена утро",
+                                        "parentId": "squad-store-1",
+                                        "headcount": 4,
+                                        "budget": 1100000,
+                                        "performance": 59,
+                                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                                        "children": []
+                                    },
+                                    {
+                                        "id": "shift-evening",
+                                        "name": "Смена вечер",
+                                        "parentId": "squad-store-1",
+                                        "headcount": 4,
+                                        "budget": 1200000,
+                                        "performance": 63,
+                                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "squad-store-2",
+                                "name": "Сквад магазин 2",
+                                "parentId": "team-stores",
+                                "headcount": 7,
+                                "budget": 2000000,
+                                "performance": 67,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "team-franchise",
+                        "name": "Франчайзи",
+                        "parentId": "dep-retail-e",
+                        "headcount": 10,
+                        "budget": 3100000,
+                        "performance": 70,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "dep-partner-e",
+                "name": "Партнёрский отдел",
+                "parentId": "div-east",
+                "headcount": 22,
+                "budget": 6700000,
+                "performance": 72,
+                "updatedAt": "2026-09-14T10:00:00.000Z",
+                "children": [
+                    {
+                        "id": "team-partners-b2b",
+                        "name": "B2B",
+                        "parentId": "dep-partner-e",
+                        "headcount": 12,
+                        "budget": 3600000,
+                        "performance": 74,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": []
+                    },
+                    {
+                        "id": "team-partners-regions",
+                        "name": "Регионы",
+                        "parentId": "dep-partner-e",
+                        "headcount": 10,
+                        "budget": 3100000,
+                        "performance": 69,
+                        "updatedAt": "2026-09-14T10:00:00.000Z",
+                        "children": [
+                            {
+                                "id": "squad-volga",
+                                "name": "Сквад Волга",
+                                "parentId": "team-partners-regions",
+                                "headcount": 5,
+                                "budget": 1500000,
+                                "performance": 71,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            },
+                            {
+                                "id": "squad-ural",
+                                "name": "Сквад Урал",
+                                "parentId": "team-partners-regions",
+                                "headcount": 5,
+                                "budget": 1600000,
+                                "performance": 67,
+                                "updatedAt": "2026-09-14T10:00:00.000Z",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
