@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const STALE_TIME = 5000 as const;
 
-type OrgNode = {
+type OrganizationNode = {
     id: string;
     name: string;
     parentId: string;
@@ -10,10 +10,10 @@ type OrgNode = {
     budget: number;
     performance: number;
     updatedAt: Date;
-    children: OrgNode[];
+    children: OrganizationNode[];
 };
 
-const orgTreeQueryKey = ['org-tree'] as const;
+const organizationStructureQueryKey = ['org-tree'] as const;
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
     typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -28,15 +28,15 @@ const parseUpdatedAt = (value: unknown): Date => {
             : new Date(typeof value === 'string' ? value : '');
 
     if (Number.isNaN(date.getTime())) {
-        throw new Error('OrgNode updatedAt must be a valid date');
+        throw new Error('OrganizationNode updatedAt must be a valid date');
     }
 
     return date;
 };
 
-const parseOrgNode = (value: unknown): OrgNode => {
+const parseOrganizationNode = (value: unknown): OrganizationNode => {
     if (!isRecord(value)) {
-        throw new Error('OrgNode must be an object');
+        throw new Error('OrganizationNode must be an object');
     }
 
     const {
@@ -55,7 +55,9 @@ const parseOrgNode = (value: unknown): OrgNode => {
         typeof name !== 'string' ||
         typeof parentId !== 'string'
     ) {
-        throw new Error('OrgNode id, name and parentId must be strings');
+        throw new Error(
+            'OrganizationNode id, name and parentId must be strings',
+        );
     }
 
     if (
@@ -64,12 +66,12 @@ const parseOrgNode = (value: unknown): OrgNode => {
         !isFiniteNumber(performance)
     ) {
         throw new Error(
-            'OrgNode headcount, budget and performance must be finite numbers',
+            'OrganizationNode headcount, budget and performance must be finite numbers',
         );
     }
 
     if (!Array.isArray(children)) {
-        throw new Error('OrgNode children must be an array');
+        throw new Error('OrganizationNode children must be an array');
     }
 
     return {
@@ -80,19 +82,19 @@ const parseOrgNode = (value: unknown): OrgNode => {
         budget,
         performance,
         updatedAt: parseUpdatedAt(updatedAt),
-        children: children.map(parseOrgNode),
+        children: children.map(parseOrganizationNode),
     };
 };
 
-const parseOrgTree = (value: unknown): OrgNode[] => {
+const parseOrgTree = (value: unknown): OrganizationNode[] => {
     if (!Array.isArray(value)) {
-        throw new Error('Org tree must be an array of OrgNode');
+        throw new Error('Org tree must be an array of OrganizationNode');
     }
 
-    return value.map(parseOrgNode);
+    return value.map(parseOrganizationNode);
 };
 
-const getOrgTree = async (): Promise<OrgNode[]> => {
+const getOrganizationStructure = async (): Promise<OrganizationNode[]> => {
     const response = await fetch('/api/org-tree');
 
     if (!response.ok) {
@@ -110,11 +112,15 @@ const getOrgTree = async (): Promise<OrgNode[]> => {
     return parseOrgTree(data);
 };
 
-const useOrgTree = () =>
+const useOrganizationStructure = () =>
     useQuery({
-        queryKey: orgTreeQueryKey,
-        queryFn: getOrgTree,
+        queryKey: organizationStructureQueryKey,
+        queryFn: getOrganizationStructure,
         staleTime: STALE_TIME,
     });
 
-export { useOrgTree, getOrgTree, orgTreeQueryKey, type OrgNode };
+export {
+    useOrganizationStructure,
+    organizationStructureQueryKey,
+    type OrganizationNode,
+};

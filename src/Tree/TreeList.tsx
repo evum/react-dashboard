@@ -1,8 +1,8 @@
-import type { OrgNode } from '@/api/GetOrgStruc';
-import TreeNode from './TreeNode';
-import TreeListRoot from './TreeListRoot';
+import type { OrganizationNode } from '@/api/GetOrganizationStructure';
+import TreeNode from '@/Tree/TreeNode';
+import TreeListRoot from '@/Tree/TreeListRoot';
 
-const TreeList = ({ data }: { data: OrgNode[] }) => (
+const TreeList = ({ data }: { data: OrganizationNode[] }) => (
     <TreeListRoot>
         {data.map((node) => (
             <TreeNode key={node.id} node={node} />

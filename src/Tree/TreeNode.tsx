@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { type OrgNode } from '@/api/GetOrgStruc';
-import TreeListRoot from './TreeListRoot';
+import { type OrganizationNode } from '@/api/GetOrganizationStructure';
+import TreeListRoot from '@/Tree/TreeListRoot';
 
 type TreeNodeProps = {
-    node: OrgNode;
+    node: OrganizationNode;
     depth?: number;
 };
 
@@ -74,7 +74,7 @@ const Metrics = styled.span`
     color: var(--text);
 `;
 
-const renderChildren = (children: OrgNode[], depth: number) => (
+const renderChildren = (children: OrganizationNode[], depth: number) => (
     <InnerTree>
         {children.map((child) => (
             <TreeNode key={child.id} node={child} depth={depth} />

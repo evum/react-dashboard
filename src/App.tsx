@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import TreeList from './Tree/TreeList';
-import { useOrgTree } from './api/GetOrgStruc';
-import '@/App.css';
+import TreeList from '@/Tree/TreeList';
+import { useOrganizationStructure } from '@/api/GetOrganizationStructure';
 
 const Status = styled.p`
     margin: 0;
@@ -9,14 +8,13 @@ const Status = styled.p`
 `;
 
 function App() {
-    const { data, isPending, error } = useOrgTree();
-
-    if (isPending) {
-        return <Status>Загрузка орг-структуры…</Status>;
-    }
-
+    const { data, isPending, error } = useOrganizationStructure();
     if (error) {
         return <Status>Не удалось загрузить дерево: {error.message}</Status>;
+    }
+
+    if (isPending) {
+        return <Status>Загрузка структуры организации…</Status>;
     }
 
     if (!data?.length) {
@@ -24,7 +22,7 @@ function App() {
     }
 
     return (
-        <nav aria-label="Орг-структура">
+        <nav aria-label="Структура организации">
             <TreeList data={data} />
         </nav>
     );
