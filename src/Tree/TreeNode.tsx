@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { type OrganizationNode } from '@/api/GetOrganizationStructure';
 import TreeListRoot from '@/Tree/TreeListRoot';
 
 type TreeNodeProps = {
     node: OrganizationNode;
-    depth?: number;
+    selectedId: string | null;
+    expandedIds: Set<string>;
+    onToggle: (id: string, expanded: boolean) => void;
 };
 
 type PerformanceTone = 'good' | 'warn' | 'bad';
@@ -13,7 +15,7 @@ type PerformanceTone = 'good' | 'warn' | 'bad';
 const performanceColors: Record<PerformanceTone, string> = {
     good: '#16a34a',
     warn: '#ca8a04',
-    bad: '#dc2626',
+    bad: '#dc2626'
 };
 
 const getPerformanceTone = (value: number): PerformanceTone => {
@@ -32,14 +34,17 @@ const InnerTree = styled(TreeListRoot)`
     padding-left: 20px;
 `;
 
-const NodeRow = styled.button`
+const NodeRow = styled.button<{ $selected: boolean }>`
     display: flex;
     align-items: center;
     gap: 8px;
     width: 100%;
     padding: 6px 8px;
     border: 0;
-    background: transparent;
+    background: ${({ $selected }) =>
+        $selected ? 'var(--accent-bg)' : 'transparent'};
+    box-shadow: ${({ $selected }) =>
+        $selected ? 'inset 3px 0 0 var(--accent)' : 'none'};
     text-align: left;
     cursor: pointer;
     font: inherit;
@@ -63,9 +68,10 @@ const PerformanceDot = styled.span<{ $tone: PerformanceTone }>`
     background: ${({ $tone }) => performanceColors[$tone]};
 `;
 
-const NodeName = styled.span`
-    font-weight: 500;
-    color: var(--text-h);
+const NodeName = styled.span<{ $selected: boolean }>`
+    font-weight: ${({ $selected }) => ($selected ? 600 : 500)};
+    color: ${({ $selected }) =>
+        $selected ? 'var(--accent)' : 'var(--text-h)'};
 `;
 
 const Metrics = styled.span`
@@ -74,24 +80,32 @@ const Metrics = styled.span`
     color: var(--text);
 `;
 
-const renderChildren = (children: OrganizationNode[], depth: number) => (
-    <InnerTree>
-        {children.map((child) => (
-            <TreeNode key={child.id} node={child} depth={depth} />
-        ))}
-    </InnerTree>
-);
-
-const TreeNode = ({ node, depth = 0 }: TreeNodeProps) => {
+const TreeNode = ({
+    node,
+    selectedId,
+    expandedIds,
+    onToggle
+}: TreeNodeProps) => {
     const hasChildren = node.children.length > 0;
-    const [expanded, setExpanded] = useState(depth < 2);
+    const expanded = expandedIds.has(node.id);
+    const selected = node.id === selectedId;
+    const rowRef = useRef<HTMLButtonElement>(null);
 
-    const onNodeClick = () => hasChildren && setExpanded((value) => !value);
+    useEffect(() => {
+        if (selected) {
+            rowRef.current?.scrollIntoView({ block: 'nearest' });
+        }
+    }, [selected]);
+
+    const onNodeClick = () => hasChildren && onToggle(node.id, !expanded);
 
     return (
         <li key={node.id}>
             <NodeRow
+                ref={rowRef}
                 type="button"
+                $selected={selected}
+                aria-current={selected ? 'true' : undefined}
                 onClick={onNodeClick}
                 aria-expanded={hasChildren ? expanded : undefined}
             >
@@ -102,12 +116,22 @@ const TreeNode = ({ node, depth = 0 }: TreeNodeProps) => {
                     aria-label={`эффективность ${node.performance}%`}
                     title={`эффективность ${node.performance}%`}
                 />
-                <NodeName>{node.name}</NodeName>
+                <NodeName $selected={selected}>{node.name}</NodeName>
                 <Metrics>{node.headcount} чел.</Metrics>
             </NodeRow>
-            {hasChildren && expanded
-                ? renderChildren(node.children, depth + 1)
-                : null}
+            {hasChildren && expanded ? (
+                <InnerTree>
+                    {node.children.map((child) => (
+                        <TreeNode
+                            key={child.id}
+                            node={child}
+                            selectedId={selectedId}
+                            expandedIds={expandedIds}
+                            onToggle={onToggle}
+                        />
+                    ))}
+                </InnerTree>
+            ) : null}
         </li>
     );
 };

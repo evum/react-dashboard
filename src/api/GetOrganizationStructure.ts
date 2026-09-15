@@ -47,7 +47,7 @@ const parseOrganizationNode = (value: unknown): OrganizationNode => {
         budget,
         performance,
         updatedAt,
-        children,
+        children
     } = value;
 
     if (
@@ -56,7 +56,7 @@ const parseOrganizationNode = (value: unknown): OrganizationNode => {
         typeof parentId !== 'string'
     ) {
         throw new Error(
-            'OrganizationNode id, name and parentId must be strings',
+            'OrganizationNode id, name and parentId must be strings'
         );
     }
 
@@ -66,7 +66,7 @@ const parseOrganizationNode = (value: unknown): OrganizationNode => {
         !isFiniteNumber(performance)
     ) {
         throw new Error(
-            'OrganizationNode headcount, budget and performance must be finite numbers',
+            'OrganizationNode headcount, budget and performance must be finite numbers'
         );
     }
 
@@ -82,7 +82,7 @@ const parseOrganizationNode = (value: unknown): OrganizationNode => {
         budget,
         performance,
         updatedAt: parseUpdatedAt(updatedAt),
-        children: children.map(parseOrganizationNode),
+        children: children.map(parseOrganizationNode)
     };
 };
 
@@ -116,11 +116,11 @@ const useOrganizationStructure = () =>
     useQuery({
         queryKey: organizationStructureQueryKey,
         queryFn: getOrganizationStructure,
-        staleTime: STALE_TIME,
+        staleTime: STALE_TIME
     });
 
 export {
     useOrganizationStructure,
     organizationStructureQueryKey,
-    type OrganizationNode,
+    type OrganizationNode
 };

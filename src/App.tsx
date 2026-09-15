@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TreeList from '@/Tree/TreeList';
+import Dashboard from '@/Dashboard';
 import { useOrganizationStructure } from '@/api/GetOrganizationStructure';
 
 const Status = styled.p`
@@ -9,6 +9,7 @@ const Status = styled.p`
 
 function App() {
     const { data, isPending, error } = useOrganizationStructure();
+
     if (error) {
         return <Status>Не удалось загрузить дерево: {error.message}</Status>;
     }
@@ -21,11 +22,7 @@ function App() {
         return <Status>Нет данных</Status>;
     }
 
-    return (
-        <nav aria-label="Структура организации">
-            <TreeList data={data} />
-        </nav>
-    );
+    return <Dashboard data={data} />;
 }
 
 export default App;
