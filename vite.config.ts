@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -45,6 +46,10 @@ export default defineConfig(({ mode }) => {
             alias: {
                 '@': srcDir
             }
+        },
+        test: {
+            environment: 'node',
+            include: ['src/**/*.test.ts']
         },
         server: {
             host: clientHost,

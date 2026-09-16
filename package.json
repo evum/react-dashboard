@@ -7,6 +7,7 @@
         "dev": "vite",
         "server": "node --env-file=.env server/index.mjs",
         "build": "tsc -b && vite build",
+        "test": "vitest run",
         "lint": "oxlint",
         "format": "prettier --write .",
         "preview": "vite preview"
@@ -25,6 +26,7 @@
         "oxlint": "^1.81.0",
         "prettier": "^3.9.6",
         "typescript": "~6.0.2",
-        "vite": "^8.3.0"
+        "vite": "^8.3.0",
+        "vitest": "^5.0.1"
     }
 }

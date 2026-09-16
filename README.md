@@ -1,35 +1,51 @@
-# React + TypeScript + Vite
+# Дашборд орг-структуры
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Мониторинг компании: дивизионы → отделы → команды. У каждого узла — численность, бюджет и эффективность.
 
-Currently, two official plugins are available:
+Слева дерево, справа сводная таблица. Метрики на сервере периодически меняются, таблица подсвечивает обновлённые ячейки.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Запуск
 
-## React Compiler
+Одна команда поднимает клиент и API:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-    "$schema": "./node_modules/oxlint/configuration_schema.json",
-    "plugins": ["react", "typescript", "oxc"],
-    "options": {
-        "typeAware": true
-    },
-    "rules": {
-        "react/rules-of-hooks": "error",
-        "react/only-export-components": [
-            "warn",
-            { "allowConstantExport": true }
-        ]
-    }
-}
+```bash
+docker compose up --build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- дашборд: http://127.0.0.1:8080/
+- API: http://127.0.0.1:3000/api/org-tree
+
+Порты и интервал мок-изменений задаются в `.env`. Пример файла - `.env.example`.
+
+Остановка: `docker compose down`.
+
+## AI-поиск
+
+В таблице строка поиска понимает естественный язык и на клиенте превращает его в структурированный фильтр. Если разобрать фразу не удалось — обычный текстовый поиск по названию.
+
+Примеры:
+
+- `отделы с эффективностью ниже 70`
+- `команды больше 10 человек`
+- `бюджет больше 2 млн`
+- `продажи`
+
+## Стек
+
+React, Vite, TypeScript, styled-components, TanStack Query. Сборка отдаётся nginx (gzip, прокси `/api`). Production-бандл укладывается в 200 КБ gzip.
+
+## AI в разработке
+
+Проект собирался в Cursor: агент писал и правил код по коротким требованиям, разработчик задавал направление и принимал решения.
+
+Основные отличия от предложений модели:
+
+- вместо FSD lite — плоская структура `src/Tree`, `src/Table`, `src/api`;
+- агрегация дерева в строки таблицы вынесена в `convertToTableRows`;
+- вёрстка с независимыми скроллами дерева и таблицы;
+- раскрытые узлы — одна истина, `Set` id в `Dashboard`;
+- посчитанные строки таблицы мемоизируются (`useMemo` от `data`).
+
+Что делал агент по требованиям: дерево и таблица, живые патчи метрик, анимация раскрытия с `prefers-reduced-motion`, Docker/nginx, разбор поисковых фраз в фильтр на клиенте.
+
+В продукте нет вызова внешней LLM. «AI-поиск» — детерминированный парсер фразы в фильтр (`parseSearchQuery.ts`); внешняя модель в рантайме не участвует.
