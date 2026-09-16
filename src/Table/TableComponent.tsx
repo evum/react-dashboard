@@ -6,6 +6,11 @@ import convertToTableRows, {
 import { useMemo, useRef, useState } from 'react';
 import TableHeader from './TableHeader';
 import { columns, type ColumnName, type SortDirection } from './columns';
+import {
+    applySearchFilter,
+    describeSearchFilter,
+    parseSearchQuery
+} from './parseSearchQuery';
 import TableRow from './TableRow';
 import useChangedCells from './useChangedCells';
 
@@ -37,19 +42,6 @@ const getSortedRows = (
         if (a[column] > b[column]) return 1 * direction;
         return 0;
     });
-};
-
-const getFilteredRows = (
-    rows: OrganizationTableRow[],
-    nameFilter: string
-): OrganizationTableRow[] => {
-    const query = nameFilter.trim().toLowerCase();
-
-    if (!query) {
-        return rows;
-    }
-
-    return rows.filter((row) => row.name.toLowerCase().includes(query));
 };
 
 const getActiveRowId = (
@@ -94,15 +86,23 @@ const TableComponent = ({
     const bodyRef = useRef<HTMLTableSectionElement>(null);
 
     const getCellPulse = useChangedCells(rows);
+    const searchFilter = useMemo(
+        () => parseSearchQuery(appliedFilter),
+        [appliedFilter]
+    );
+    const filterHint = useMemo(
+        () => describeSearchFilter(searchFilter),
+        [searchFilter]
+    );
 
     const visibleRows = useMemo(
         () =>
             getSortedRows(
-                getFilteredRows(rows, appliedFilter),
+                applySearchFilter(rows, searchFilter),
                 sortColumn,
                 sortDirection
             ),
-        [rows, appliedFilter, sortColumn, sortDirection]
+        [rows, searchFilter, sortColumn, sortDirection]
     );
 
     const activeId = useMemo(
@@ -194,6 +194,7 @@ const TableComponent = ({
                 sortColumn={sortColumn}
                 sortDirection={sortDirection}
                 nameFilter={nameFilter}
+                filterHint={filterHint}
                 onHeaderClick={onHeaderClick}
                 onNameFilterChange={filterRows}
             />

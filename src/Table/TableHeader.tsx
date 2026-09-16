@@ -34,6 +34,12 @@ const FilterInput = styled.input`
     }
 `;
 
+const FilterHint = styled.p`
+    margin: 6px 0 0;
+    font-size: 12px;
+    color: var(--text);
+`;
+
 const SortMark = styled.span`
     display: inline-block;
     width: 12px;
@@ -57,12 +63,14 @@ const TableHeader = ({
     sortColumn,
     sortDirection,
     nameFilter,
+    filterHint,
     onHeaderClick,
     onNameFilterChange
 }: {
     sortColumn: ColumnName | null;
     sortDirection: SortDirection;
     nameFilter: string;
+    filterHint: string | null;
     onHeaderClick: (e: React.MouseEvent<HTMLTableRowElement>) => void;
     onNameFilterChange: (value: string) => void;
 }) => (
@@ -84,16 +92,18 @@ const TableHeader = ({
             ))}
         </tr>
         <tr>
-            <FilterCell>
+            <FilterCell colSpan={columns.length}>
                 <FilterInput
                     type="search"
                     value={nameFilter}
-                    placeholder="Поиск по названию"
-                    aria-label="Поиск по названию подразделения"
+                    placeholder="отделы с эффективностью ниже 70"
+                    aria-label="Поиск по оргструктуре"
                     onChange={(e) => onNameFilterChange(e.target.value)}
                 />
+                {filterHint ? (
+                    <FilterHint role="status">{filterHint}</FilterHint>
+                ) : null}
             </FilterCell>
-            <FilterCell colSpan={columns.length - 1} />
         </tr>
     </thead>
 );
