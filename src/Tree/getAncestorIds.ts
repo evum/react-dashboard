@@ -1,4 +1,4 @@
-import type { OrganizationNode } from '@/api/GetOrganizationStructure';
+import type { OrganizationNode } from '@/api/utils';
 
 const findAncestorIds = (
     nodes: OrganizationNode[],

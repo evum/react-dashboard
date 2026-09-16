@@ -1,4 +1,4 @@
-import type { OrganizationNode } from '@/api/GetOrganizationStructure';
+import type { OrganizationNode } from '@/api/utils';
 
 type OrganizationTableRow = {
     id: string;

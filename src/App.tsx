@@ -18,11 +18,11 @@ function App() {
         return <Status>Загрузка структуры организации…</Status>;
     }
 
-    if (!data?.length) {
+    if (!data?.nodes.length) {
         return <Status>Нет данных</Status>;
     }
 
-    return <Dashboard data={data} />;
+    return <Dashboard data={data.nodes} />;
 }
 
 export default App;

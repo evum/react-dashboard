@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { type OrganizationNode } from '@/api/GetOrganizationStructure';
+import type { OrganizationNode } from '@/api/utils';
+import Expandable from '@/Tree/Expandable';
 import TreeListRoot from '@/Tree/TreeListRoot';
 
 type TreeNodeProps = {
@@ -119,18 +120,20 @@ const TreeNode = ({
                 <NodeName $selected={selected}>{node.name}</NodeName>
                 <Metrics>{node.headcount} чел.</Metrics>
             </NodeRow>
-            {hasChildren && expanded ? (
-                <InnerTree>
-                    {node.children.map((child) => (
-                        <TreeNode
-                            key={child.id}
-                            node={child}
-                            selectedId={selectedId}
-                            expandedIds={expandedIds}
-                            onToggle={onToggle}
-                        />
-                    ))}
-                </InnerTree>
+            {hasChildren ? (
+                <Expandable expanded={expanded}>
+                    <InnerTree>
+                        {node.children.map((child) => (
+                            <TreeNode
+                                key={child.id}
+                                node={child}
+                                selectedId={selectedId}
+                                expandedIds={expandedIds}
+                                onToggle={onToggle}
+                            />
+                        ))}
+                    </InnerTree>
+                </Expandable>
             ) : null}
         </li>
     );

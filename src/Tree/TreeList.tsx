@@ -1,4 +1,4 @@
-import type { OrganizationNode } from '@/api/GetOrganizationStructure';
+import type { OrganizationNode } from '@/api/utils';
 import TreeNode from '@/Tree/TreeNode';
 import TreeListRoot from '@/Tree/TreeListRoot';
 

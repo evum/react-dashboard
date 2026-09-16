@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import ConnectionStatus from '@/ConnectionStatus';
 import TableComponent from '@/Table/TableComponent';
 import TreeList from '@/Tree/TreeList';
 import collectExpandedIds from '@/Tree/collectExpandedIds';
 import getAncestorIds from '@/Tree/getAncestorIds';
-import type { OrganizationNode } from '@/api/GetOrganizationStructure';
+import type { OrganizationNode } from './api/utils';
 
 type ViewMode = 'tree' | 'table';
 
@@ -17,6 +18,20 @@ const Layout = styled.div`
     width: 100%;
     box-sizing: border-box;
     height: 100vh;
+`;
+
+const Header = styled.header`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+`;
+
+const Title = styled.h1`
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
 `;
 
 const Switch = styled.div`
@@ -85,8 +100,8 @@ const Dashboard = ({ data }: { data: OrganizationNode[] }) => {
             return next;
         });
 
-    const onSelect = (id: string) => {
-        const newId = selectedId === id ? null : id;
+    const onSelect = (id: string, { toggle = true }: { toggle?: boolean } = {}) => {
+        const newId = toggle && selectedId === id ? null : id;
         setSelectedId(newId);
 
         if (!newId) {
@@ -101,6 +116,10 @@ const Dashboard = ({ data }: { data: OrganizationNode[] }) => {
 
     return (
         <Layout>
+            <Header>
+                <Title>Организационная структура</Title>
+                <ConnectionStatus />
+            </Header>
             <Switch role="tablist" aria-label="Вид">
                 <SwitchButton
                     type="button"
